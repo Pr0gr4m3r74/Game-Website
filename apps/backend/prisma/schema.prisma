@@ -1,0 +1,233 @@
+// This is your Prisma schema file
+// 3D Avatar Social Game Platform - Database Schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Management
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  passwordHash  String?   // null for OAuth users
+  displayName   String
+  role          UserRole  @default(USER)
+  locale        String    @default("de") // de or en
+  isVerified    Boolean   @default(false)
+  isBanned      Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  lastLoginAt   DateTime?
+
+  // OAuth
+  googleId      String?   @unique
+  appleId       String?   @unique
+
+  // Relations
+  avatars       Avatar[]
+  cosmetics     CosmeticItem[]
+  worlds        World[]
+  bitsBalance   BitsBalance?
+  sentTransactions     Transaction[] @relation("SenderTransactions")
+  receivedTransactions Transaction[] @relation("ReceiverTransactions")
+  reports       Report[]  @relation("ReporterReports")
+  targetReports Report[]  @relation("TargetReports")
+
+  @@index([email])
+  @@index([googleId])
+  @@index([appleId])
+}
+
+enum UserRole {
+  USER
+  CREATOR
+  MODERATOR
+  ADMIN
+}
+
+// Avatar System - Core feature
+model Avatar {
+  id              String    @id @default(uuid())
+  ownerId         String
+  owner           User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  name            String
+  baseModelUrl    String    // S3 URL to base GLB/GLTF file
+  thumbnailUrl    String?
+  customization   Json      // Colors, morphs, scale, etc.
+  equippedItems   String[]  // Array of CosmeticItem IDs
+  isActive        Boolean   @default(false) // User's current avatar
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([ownerId])
+}
+
+// Cosmetic Items (Marketplace)
+model CosmeticItem {
+  id                String          @id @default(uuid())
+  ownerId           String
+  owner             User            @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  name              String
+  description       String?
+  type              CosmeticType
+  assetUrl          String          // S3 URL to GLB/GLTF asset
+  previewThumbnail  String?
+  priceBits         Int             @default(0)
+  isForSale         Boolean         @default(false)
+  metadata          Json            // Tags, attachment points, physics hints
+  isApproved        Boolean         @default(false) // Moderation
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  
+  transactions      Transaction[]
+
+  @@index([ownerId])
+  @@index([isForSale, isApproved])
+  @@index([type])
+}
+
+enum CosmeticType {
+  HEAD
+  BODY
+  ACCESSORY
+  HAIR
+  EYES
+  OUTFIT
+  SKIN
+  ANIMATION
+}
+
+// World/Scene System
+model World {
+  id            String    @id @default(uuid())
+  ownerId       String
+  owner         User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  name          String
+  description   String?
+  sceneJSON     Json      // Scene data: prefabs, transforms, etc.
+  thumbnailUrl  String?
+  visibility    Visibility @default(PRIVATE)
+  isApproved    Boolean   @default(false)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([ownerId])
+  @@index([visibility, isApproved])
+}
+
+enum Visibility {
+  PRIVATE
+  FRIENDS
+  PUBLIC
+}
+
+// Bits Economy (Virtual Currency)
+model BitsBalance {
+  userId    String   @id
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  balance   Int      @default(0)
+  updatedAt DateTime @updatedAt
+}
+
+// Transaction Log (Atomic Operations)
+model Transaction {
+  id          String          @id @default(uuid())
+  fromUserId  String?         // null for platform gifts
+  fromUser    User?           @relation("SenderTransactions", fields: [fromUserId], references: [id])
+  toUserId    String
+  toUser      User            @relation("ReceiverTransactions", fields: [toUserId], references: [id])
+  amountBits  Int
+  itemId      String?         // CosmeticItem if purchase
+  item        CosmeticItem?   @relation(fields: [itemId], references: [id])
+  type        TransactionType
+  status      TransactionStatus @default(COMPLETED)
+  platformFee Int             @default(0) // Configurable platform cut
+  createdAt   DateTime        @default(now())
+
+  @@index([fromUserId])
+  @@index([toUserId])
+  @@index([createdAt])
+}
+
+enum TransactionType {
+  PURCHASE
+  GIFT
+  REFUND
+  PLATFORM_REWARD
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+// Moderation & Reporting
+model Report {
+  id          String       @id @default(uuid())
+  reporterId  String
+  reporter    User         @relation("ReporterReports", fields: [reporterId], references: [id])
+  targetType  ReportTarget
+  targetId    String       // ID of reported entity
+  targetUser  User?        @relation("TargetReports", fields: [targetUserId], references: [id])
+  targetUserId String?
+  reason      String
+  description String?
+  status      ReportStatus @default(PENDING)
+  reviewedBy  String?      // Admin user ID
+  reviewedAt  DateTime?
+  resolution  String?      // Admin notes
+  createdAt   DateTime     @default(now())
+
+  @@index([reporterId])
+  @@index([status])
+  @@index([targetType, targetId])
+}
+
+enum ReportTarget {
+  USER
+  COSMETIC
+  WORLD
+  AVATAR
+}
+
+enum ReportStatus {
+  PENDING
+  UNDER_REVIEW
+  RESOLVED
+  DISMISSED
+}
+
+// Audit Log for Moderation Actions
+model AuditLog {
+  id          String   @id @default(uuid())
+  adminId     String
+  action      String   // e.g., "BAN_USER", "APPROVE_COSMETIC", "REFUND_TRANSACTION"
+  targetType  String
+  targetId    String
+  details     Json?
+  createdAt   DateTime @default(now())
+
+  @@index([adminId])
+  @@index([createdAt])
+}
+
+// GDPR Data Export Requests
+model DataExportRequest {
+  id          String   @id @default(uuid())
+  userId      String
+  status      String   @default("PENDING") // PENDING, PROCESSING, COMPLETED, FAILED
+  downloadUrl String?
+  expiresAt   DateTime?
+  createdAt   DateTime @default(now())
+  completedAt DateTime?
+
+  @@index([userId])
+  @@index([status])
+}
