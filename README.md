@@ -2,6 +2,8 @@
 
 A production-ready MVP for a cross-platform social game platform built with modern web technologies. Play on web, iOS, and Android via PWA/native wrappers.
 
+> **🔒 Security Update**: Next.js has been updated to version 15.0.8+ to address CVE-2025 vulnerabilities related to HTTP request deserialization DoS. Always run `npm audit` and keep dependencies up to date.
+
 ## 🚀 Features
 
 - **Cross-Platform**: Web-first PWA design, playable on desktop, iOS, and Android
