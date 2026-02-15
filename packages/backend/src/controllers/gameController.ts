@@ -135,7 +135,7 @@ export const joinGame = async (req: AuthRequest, res: Response) => {
 
     // Check if user already joined
     const existingParticipant = game.participants.find(
-      (p) => p.userId === req.userId
+      (p: any) => p.userId === req.userId
     );
 
     if (existingParticipant) {

@@ -48,9 +48,7 @@ export const register = async (req: Request, res: Response) => {
     });
 
     // Generate token
-    const token = jwt.sign({ userId: user.id }, config.jwt.secret, {
-      expiresIn: config.jwt.expiresIn,
-    });
+    const token = jwt.sign({ userId: user.id }, config.jwt.secret);
 
     res.status(201).json({
       success: true,
@@ -92,9 +90,7 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // Generate token
-    const token = jwt.sign({ userId: user.id }, config.jwt.secret, {
-      expiresIn: config.jwt.expiresIn,
-    });
+    const token = jwt.sign({ userId: user.id }, config.jwt.secret);
 
     // Return user without password
     const { password: _, ...userWithoutPassword } = user;
@@ -164,7 +160,7 @@ export const getProfile = async (req: AuthRequest, res: Response) => {
         ...user,
         friendCount,
         gamesPlayed,
-        achievements: achievements.map((ua) => ({
+        achievements: achievements.map((ua: any) => ({
           ...ua.achievement,
           unlockedAt: ua.unlockedAt,
         })),
