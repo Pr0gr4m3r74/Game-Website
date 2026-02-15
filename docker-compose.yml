@@ -29,7 +29,8 @@ services:
       NODE_ENV: production
       PORT: 3001
       DATABASE_URL: postgresql://playverse:playverse123@postgres:5432/playverse?schema=public
-      JWT_SECRET: your-super-secret-jwt-key-change-in-production
+      # IMPORTANT: Change this in production! Use secrets management or environment variables
+      JWT_SECRET: ${JWT_SECRET:-change-this-secret-in-production}
       JWT_EXPIRES_IN: 7d
       CORS_ORIGIN: http://localhost:3000
     depends_on:

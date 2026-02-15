@@ -91,15 +91,23 @@ Game-Website/
    cd Game-Website
    ```
 
-2. **Start the services**
+2. **Set production secrets** (IMPORTANT for production)
+   ```bash
+   # Set JWT secret via environment variable
+   export JWT_SECRET="your-secure-random-jwt-secret-here"
+   ```
+
+3. **Start the services**
    ```bash
    docker-compose up -d
    ```
 
-3. **Access the application**
+4. **Access the application**
    - Frontend: http://localhost:3000
    - Backend API: http://localhost:3001
    - API Health: http://localhost:3001/api/health
+
+> **⚠️ Security Note**: The default docker-compose.yml is configured for development. For production, ensure you set a secure JWT_SECRET environment variable and use proper secrets management.
 
 ### Option 2: Local Development
 
