@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { body } from 'express-validator';
 import { register, login, getProfile } from '../controllers/authController';
 import { authenticate } from '../middleware/auth';
+import { authLimiter } from '../middleware/rateLimiter';
 
 const router = Router();
 
@@ -29,8 +30,8 @@ const loginValidation = [
   body('password').notEmpty().withMessage('Password is required'),
 ];
 
-router.post('/register', registerValidation, register);
-router.post('/login', loginValidation, login);
+router.post('/register', authLimiter, registerValidation, register);
+router.post('/login', authLimiter, loginValidation, login);
 router.get('/profile', authenticate, getProfile);
 
 export default router;

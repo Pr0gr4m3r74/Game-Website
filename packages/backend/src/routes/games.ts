@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { body } from 'express-validator';
 import { getGames, createGame, joinGame } from '../controllers/gameController';
 import { authenticate } from '../middleware/auth';
+import { apiLimiter } from '../middleware/rateLimiter';
 
 const router = Router();
 
@@ -18,8 +19,8 @@ const createGameValidation = [
     .withMessage('Max players must be between 2 and 10'),
 ];
 
-router.get('/', authenticate, getGames);
-router.post('/', authenticate, createGameValidation, createGame);
-router.post('/:id/join', authenticate, joinGame);
+router.get('/', authenticate, apiLimiter, getGames);
+router.post('/', authenticate, apiLimiter, createGameValidation, createGame);
+router.post('/:id/join', authenticate, apiLimiter, joinGame);
 
 export default router;
