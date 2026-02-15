@@ -28,13 +28,31 @@ Multiple vulnerabilities were discovered in Next.js versions prior to 15.0.8 tha
 
 ### Resolution
 
-✅ **FIXED** - Updated to Next.js 15.0.8+
+✅ **FIXED** - Updated to Next.js 15.5.12
 
 **Changes Applied**:
-- Next.js: 14.0.4 → 15.0.8
+- Next.js: 14.0.4 → 15.5.12 (latest stable)
 - React: 18.2.0 → 18.3.0
 - React DOM: 18.2.0 → 18.3.0
 - ESLint Config Next: 14.0.4 → 15.0.8
+- package-lock.json regenerated with secure versions
+
+**Verification**: All Next.js CVE-2025 DoS vulnerabilities are now patched.
+
+### Known Issues
+
+⚠️ **Transitive Dependencies**
+
+The following vulnerabilities exist in transitive dependencies (not directly in our code):
+
+1. **tar** (<=7.5.6) - Used by @mapbox/node-pre-gyp
+   - Severity: High
+   - Impact: File overwrite vulnerabilities
+   - Status: Awaiting upstream fix
+   - Mitigation: These are build-time dependencies, not runtime
+   - Action: Monitor for updates to bcrypt/node-pre-gyp packages
+
+**Note**: These tar vulnerabilities affect build tools, not the runtime application. They pose minimal risk in a production deployment but should be monitored for updates.
 
 ### Action Required
 
@@ -158,7 +176,8 @@ For security concerns:
 
 | Date | Version | Change | Severity |
 |------|---------|--------|----------|
-| 2025-02-15 | Next.js 14.0.4 → 15.0.8 | Fixed DoS vulnerability | HIGH |
+| 2025-02-15 | Next.js 14.0.4 → 15.5.12 | Fixed DoS vulnerability, regenerated lock file | HIGH |
+| 2025-02-15 | package-lock.json | Regenerated with secure versions | HIGH |
 
 ---
 
