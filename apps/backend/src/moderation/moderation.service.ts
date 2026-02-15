@@ -2,7 +2,7 @@ import { Injectable, NotFoundException, ForbiddenException, BadRequestException 
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateReportDto } from './dto/create-report.dto';
 import { ReviewReportDto } from './dto/review-report.dto';
-import { ReportStatus } from '@prisma/client';
+import { ReportStatus, ReportTarget } from '@prisma/client';
 
 @Injectable()
 export class ModerationService {
@@ -279,18 +279,18 @@ export class ModerationService {
     return updatedUser;
   }
 
-  private async validateTarget(targetType: string, targetId: string): Promise<boolean> {
+  private async validateTarget(targetType: ReportTarget, targetId: string): Promise<boolean> {
     switch (targetType) {
-      case 'USER':
+      case ReportTarget.USER:
         const user = await this.prisma.user.findUnique({ where: { id: targetId } });
         return !!user;
-      case 'COSMETIC':
+      case ReportTarget.COSMETIC:
         const cosmetic = await this.prisma.cosmeticItem.findUnique({ where: { id: targetId } });
         return !!cosmetic;
-      case 'WORLD':
+      case ReportTarget.WORLD:
         const world = await this.prisma.world.findUnique({ where: { id: targetId } });
         return !!world;
-      case 'AVATAR':
+      case ReportTarget.AVATAR:
         const avatar = await this.prisma.avatar.findUnique({ where: { id: targetId } });
         return !!avatar;
       default:
