@@ -1,0 +1,191 @@
+{
+  "common": {
+    "appName": "Game Website",
+    "welcome": "Willkommen",
+    "loading": "Lädt...",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "edit": "Bearbeiten",
+    "create": "Erstellen",
+    "search": "Suchen",
+    "filter": "Filter",
+    "close": "Schließen",
+    "confirm": "Bestätigen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "submit": "Absenden",
+    "price": "Preis",
+    "quantity": "Menge",
+    "total": "Gesamt",
+    "status": "Status",
+    "actions": "Aktionen"
+  },
+  "nav": {
+    "home": "Startseite",
+    "avatarEditor": "Avatar-Editor",
+    "cosmetics": "Kosmetik",
+    "marketplace": "Marktplatz",
+    "worlds": "Welten",
+    "admin": "Admin",
+    "profile": "Profil",
+    "logout": "Abmelden",
+    "login": "Anmelden",
+    "register": "Registrieren"
+  },
+  "auth": {
+    "login": "Anmelden",
+    "register": "Registrieren",
+    "logout": "Abmelden",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "username": "Benutzername",
+    "displayName": "Anzeigename",
+    "confirmPassword": "Passwort bestätigen",
+    "forgotPassword": "Passwort vergessen?",
+    "noAccount": "Noch kein Konto?",
+    "hasAccount": "Bereits ein Konto?",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "selectLanguage": "Sprache wählen",
+    "loginSuccess": "Erfolgreich angemeldet!",
+    "registerSuccess": "Konto erfolgreich erstellt!",
+    "logoutSuccess": "Erfolgreich abgemeldet!",
+    "loginError": "Ungültige E-Mail oder Passwort",
+    "registerError": "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut."
+  },
+  "avatar": {
+    "title": "Avatar-Editor",
+    "myAvatars": "Meine Avatare",
+    "createNew": "Neuen Avatar erstellen",
+    "editAvatar": "Avatar bearbeiten",
+    "avatarName": "Avatar-Name",
+    "bodyType": "Körpertyp",
+    "skinColor": "Hautfarbe",
+    "hairStyle": "Frisur",
+    "hairColor": "Haarfarbe",
+    "eyeColor": "Augenfarbe",
+    "height": "Größe",
+    "proportions": "Proportionen",
+    "head": "Kopf",
+    "body": "Körper",
+    "arms": "Arme",
+    "legs": "Beine",
+    "equippedCosmetics": "Ausgerüstete Kosmetik",
+    "equipCosmetic": "Kosmetik ausrüsten",
+    "unequipCosmetic": "Kosmetik ablegen",
+    "saveAvatar": "Avatar speichern",
+    "deleteAvatar": "Avatar löschen",
+    "confirmDelete": "Möchten Sie diesen Avatar wirklich löschen?"
+  },
+  "cosmetics": {
+    "title": "Kosmetik-Shop",
+    "myCosmetics": "Meine Kosmetik",
+    "shop": "Shop",
+    "category": "Kategorie",
+    "rarity": "Seltenheit",
+    "hair": "Haare",
+    "clothing": "Kleidung",
+    "accessory": "Accessoire",
+    "animation": "Animation",
+    "effect": "Effekt",
+    "common": "Gewöhnlich",
+    "rare": "Selten",
+    "epic": "Episch",
+    "legendary": "Legendär",
+    "purchase": "Kaufen",
+    "owned": "Besessen",
+    "limited": "Limitierte Auflage",
+    "availableUntil": "Verfügbar bis",
+    "purchaseSuccess": "Kosmetik erfolgreich gekauft!",
+    "purchaseError": "Kauf fehlgeschlagen"
+  },
+  "marketplace": {
+    "title": "Marktplatz",
+    "myListings": "Meine Angebote",
+    "createListing": "Angebot erstellen",
+    "buyNow": "Jetzt kaufen",
+    "seller": "Verkäufer",
+    "listingPrice": "Angebotspreis",
+    "itemsSold": "Verkaufte Artikel",
+    "cancelListing": "Angebot stornieren",
+    "confirmCancel": "Möchten Sie dieses Angebot wirklich stornieren?",
+    "purchaseSuccess": "Artikel erfolgreich gekauft!",
+    "purchaseError": "Kauf fehlgeschlagen",
+    "listingCreated": "Angebot erfolgreich erstellt!",
+    "listingCanceled": "Angebot erfolgreich storniert!"
+  },
+  "worlds": {
+    "title": "Virtuelle Welten",
+    "myWorlds": "Meine Welten",
+    "publicWorlds": "Öffentliche Welten",
+    "joinWorld": "Welt beitreten",
+    "leaveWorld": "Welt verlassen",
+    "creator": "Ersteller",
+    "players": "Spieler",
+    "maxPlayers": "Max. Spieler",
+    "rating": "Bewertung",
+    "tags": "Tags",
+    "description": "Beschreibung",
+    "isPublic": "Öffentlich",
+    "isPrivate": "Privat",
+    "joinSuccess": "Welt wird betreten...",
+    "joinError": "Fehler beim Beitreten der Welt"
+  },
+  "admin": {
+    "title": "Admin-Dashboard",
+    "users": "Benutzer",
+    "analytics": "Analytik",
+    "moderation": "Moderation",
+    "settings": "Einstellungen",
+    "totalUsers": "Gesamte Benutzer",
+    "activeUsers": "Aktive Benutzer",
+    "totalRevenue": "Gesamtumsatz",
+    "reports": "Berichte"
+  },
+  "errors": {
+    "generic": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "network": "Netzwerkfehler. Bitte überprüfen Sie Ihre Verbindung.",
+    "unauthorized": "Nicht autorisiert. Bitte melden Sie sich an.",
+    "forbidden": "Sie haben keine Berechtigung für den Zugriff.",
+    "notFound": "Ressource nicht gefunden.",
+    "serverError": "Serverfehler. Bitte versuchen Sie es später erneut.",
+    "validationError": "Bitte überprüfen Sie Ihre Eingabe und versuchen Sie es erneut.",
+    "requiredField": "Dieses Feld ist erforderlich",
+    "invalidEmail": "Ungültige E-Mail-Adresse",
+    "passwordTooShort": "Passwort muss mindestens 8 Zeichen lang sein",
+    "passwordsDoNotMatch": "Passwörter stimmen nicht überein"
+  },
+  "home": {
+    "hero": {
+      "title": "Willkommen im Metaverse",
+      "subtitle": "Erstelle deinen Avatar, erkunde virtuelle Welten und vernetze dich mit Spielern weltweit",
+      "cta": "Jetzt starten"
+    },
+    "features": {
+      "title": "Funktionen",
+      "avatars": {
+        "title": "Individuelle Avatare",
+        "description": "Erstelle und passe deinen einzigartigen 3D-Avatar mit tausenden Optionen an"
+      },
+      "worlds": {
+        "title": "Virtuelle Welten",
+        "description": "Erkunde von Benutzern erstellte Welten und baue deine eigenen immersiven Erlebnisse"
+      },
+      "marketplace": {
+        "title": "Marktplatz",
+        "description": "Handel mit Kosmetik und Gegenständen mit anderen Spielern auf einem sicheren Marktplatz"
+      },
+      "social": {
+        "title": "Social Hub",
+        "description": "Vernetze dich mit Freunden, tritt Communities bei und spiele zusammen"
+      }
+    },
+    "stats": {
+      "players": "Aktive Spieler",
+      "worlds": "Virtuelle Welten",
+      "cosmetics": "Kosmetik-Artikel"
+    }
+  }
+}

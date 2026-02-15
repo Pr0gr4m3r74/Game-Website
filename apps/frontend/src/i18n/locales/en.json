@@ -1,0 +1,191 @@
+{
+  "common": {
+    "appName": "Game Website",
+    "welcome": "Welcome",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "confirm": "Confirm",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "price": "Price",
+    "quantity": "Quantity",
+    "total": "Total",
+    "status": "Status",
+    "actions": "Actions"
+  },
+  "nav": {
+    "home": "Home",
+    "avatarEditor": "Avatar Editor",
+    "cosmetics": "Cosmetics",
+    "marketplace": "Marketplace",
+    "worlds": "Worlds",
+    "admin": "Admin",
+    "profile": "Profile",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "username": "Username",
+    "displayName": "Display Name",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "selectLanguage": "Select Language",
+    "loginSuccess": "Successfully logged in!",
+    "registerSuccess": "Account created successfully!",
+    "logoutSuccess": "Successfully logged out!",
+    "loginError": "Invalid email or password",
+    "registerError": "Registration failed. Please try again."
+  },
+  "avatar": {
+    "title": "Avatar Editor",
+    "myAvatars": "My Avatars",
+    "createNew": "Create New Avatar",
+    "editAvatar": "Edit Avatar",
+    "avatarName": "Avatar Name",
+    "bodyType": "Body Type",
+    "skinColor": "Skin Color",
+    "hairStyle": "Hair Style",
+    "hairColor": "Hair Color",
+    "eyeColor": "Eye Color",
+    "height": "Height",
+    "proportions": "Proportions",
+    "head": "Head",
+    "body": "Body",
+    "arms": "Arms",
+    "legs": "Legs",
+    "equippedCosmetics": "Equipped Cosmetics",
+    "equipCosmetic": "Equip Cosmetic",
+    "unequipCosmetic": "Unequip Cosmetic",
+    "saveAvatar": "Save Avatar",
+    "deleteAvatar": "Delete Avatar",
+    "confirmDelete": "Are you sure you want to delete this avatar?"
+  },
+  "cosmetics": {
+    "title": "Cosmetics Store",
+    "myCosmetics": "My Cosmetics",
+    "shop": "Shop",
+    "category": "Category",
+    "rarity": "Rarity",
+    "hair": "Hair",
+    "clothing": "Clothing",
+    "accessory": "Accessory",
+    "animation": "Animation",
+    "effect": "Effect",
+    "common": "Common",
+    "rare": "Rare",
+    "epic": "Epic",
+    "legendary": "Legendary",
+    "purchase": "Purchase",
+    "owned": "Owned",
+    "limited": "Limited Edition",
+    "availableUntil": "Available until",
+    "purchaseSuccess": "Cosmetic purchased successfully!",
+    "purchaseError": "Failed to purchase cosmetic"
+  },
+  "marketplace": {
+    "title": "Marketplace",
+    "myListings": "My Listings",
+    "createListing": "Create Listing",
+    "buyNow": "Buy Now",
+    "seller": "Seller",
+    "listingPrice": "Listing Price",
+    "itemsSold": "Items Sold",
+    "cancelListing": "Cancel Listing",
+    "confirmCancel": "Are you sure you want to cancel this listing?",
+    "purchaseSuccess": "Item purchased successfully!",
+    "purchaseError": "Failed to purchase item",
+    "listingCreated": "Listing created successfully!",
+    "listingCanceled": "Listing canceled successfully!"
+  },
+  "worlds": {
+    "title": "Virtual Worlds",
+    "myWorlds": "My Worlds",
+    "publicWorlds": "Public Worlds",
+    "joinWorld": "Join World",
+    "leaveWorld": "Leave World",
+    "creator": "Creator",
+    "players": "Players",
+    "maxPlayers": "Max Players",
+    "rating": "Rating",
+    "tags": "Tags",
+    "description": "Description",
+    "isPublic": "Public",
+    "isPrivate": "Private",
+    "joinSuccess": "Joining world...",
+    "joinError": "Failed to join world"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "users": "Users",
+    "analytics": "Analytics",
+    "moderation": "Moderation",
+    "settings": "Settings",
+    "totalUsers": "Total Users",
+    "activeUsers": "Active Users",
+    "totalRevenue": "Total Revenue",
+    "reports": "Reports"
+  },
+  "errors": {
+    "generic": "An error occurred. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "unauthorized": "Unauthorized. Please login.",
+    "forbidden": "You don't have permission to access this.",
+    "notFound": "Resource not found.",
+    "serverError": "Server error. Please try again later.",
+    "validationError": "Please check your input and try again.",
+    "requiredField": "This field is required",
+    "invalidEmail": "Invalid email address",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "passwordsDoNotMatch": "Passwords do not match"
+  },
+  "home": {
+    "hero": {
+      "title": "Welcome to the Metaverse",
+      "subtitle": "Create your avatar, explore virtual worlds, and connect with players worldwide",
+      "cta": "Get Started"
+    },
+    "features": {
+      "title": "Features",
+      "avatars": {
+        "title": "Custom Avatars",
+        "description": "Create and customize your unique 3D avatar with thousands of options"
+      },
+      "worlds": {
+        "title": "Virtual Worlds",
+        "description": "Explore user-created worlds and build your own immersive experiences"
+      },
+      "marketplace": {
+        "title": "Marketplace",
+        "description": "Trade cosmetics and items with other players in a secure marketplace"
+      },
+      "social": {
+        "title": "Social Hub",
+        "description": "Connect with friends, join communities, and play together"
+      }
+    },
+    "stats": {
+      "players": "Active Players",
+      "worlds": "Virtual Worlds",
+      "cosmetics": "Cosmetic Items"
+    }
+  }
+}
