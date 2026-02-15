@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { body } from 'express-validator';
 import { register, login, getProfile } from '../controllers/authController';
 import { authenticate } from '../middleware/auth';
-import { authLimiter } from '../middleware/rateLimiter';
+import { authLimiter, apiLimiter } from '../middleware/rateLimiter';
 
 const router = Router();
 
@@ -32,6 +32,6 @@ const loginValidation = [
 
 router.post('/register', authLimiter, registerValidation, register);
 router.post('/login', authLimiter, loginValidation, login);
-router.get('/profile', authenticate, getProfile);
+router.get('/profile', authenticate, apiLimiter, getProfile);
 
 export default router;
