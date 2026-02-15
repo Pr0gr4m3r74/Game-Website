@@ -360,6 +360,14 @@ This is a production-ready MVP designed for team collaboration. Here's how to co
 
 This project is available for educational and commercial use.
 
+## 🔒 Security
+
+Security is a top priority. For security advisories and best practices:
+- Review [SECURITY.md](./SECURITY.md) for vulnerability information
+- Run `npm audit` regularly to check for vulnerabilities
+- Keep dependencies updated
+- Report security issues privately through GitHub
+
 ## 🙏 Acknowledgments
 
 - Built with modern web technologies and best practices
