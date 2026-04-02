@@ -1,7 +1,9 @@
 import api, { apiClient } from './client';
+import { mockAuthApi } from './mock';
+import { useMocks } from '../utils/env';
 import type { AuthResponse, LoginRequest, RegisterRequest, User } from '../types/auth';
 
-export const authApi = {
+const realAuthApi = {
   async login(credentials: LoginRequest): Promise<AuthResponse> {
     const { data } = await api.post<AuthResponse>('/auth/login', credentials);
     apiClient.setToken(data.token);
@@ -40,3 +42,5 @@ export const authApi = {
     return !!apiClient.getToken();
   },
 };
+
+export const authApi = useMocks ? mockAuthApi : realAuthApi;

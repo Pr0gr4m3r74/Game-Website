@@ -1,7 +1,9 @@
 import api from './client';
+import { mockAvatarsApi } from './mock';
+import { useMocks } from '../utils/env';
 import type { Avatar, AvatarCustomization } from '../types/game';
 
-export const avatarsApi = {
+const realAvatarsApi = {
   async getMyAvatars(): Promise<Avatar[]> {
     const { data } = await api.get<Avatar[]>('/avatars/my');
     return data;
@@ -40,3 +42,5 @@ export const avatarsApi = {
     return data;
   },
 };
+
+export const avatarsApi = useMocks ? mockAvatarsApi : realAvatarsApi;
