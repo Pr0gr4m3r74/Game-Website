@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  // Use relative paths so the build works with Electron's loadFile
+  base: './',
   plugins: [
     react(),
     VitePWA({

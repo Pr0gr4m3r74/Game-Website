@@ -49,3 +49,7 @@ temp/
 
 # Build artifacts
 *.tsbuildinfo
+
+# Electron
+dist-electron/
+release/

@@ -1,8 +1,10 @@
 import api from './client';
+import { mockCosmeticsApi } from './mock';
+import { useMocks } from '../utils/env';
 import type { Cosmetic, PaginatedResponse } from '../types/game';
 import type { ApiResponse } from '../types/api';
 
-export const cosmeticsApi = {
+const realCosmeticsApi = {
   async getCosmetics(params?: {
     category?: string;
     rarity?: string;
@@ -28,3 +30,5 @@ export const cosmeticsApi = {
     return data;
   },
 };
+
+export const cosmeticsApi = useMocks ? mockCosmeticsApi : realCosmeticsApi;

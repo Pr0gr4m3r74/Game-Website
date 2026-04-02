@@ -1,7 +1,9 @@
 import api from './client';
+import { mockWorldsApi } from './mock';
+import { useMocks } from '../utils/env';
 import type { World, PaginatedResponse } from '../types/game';
 
-export const worldsApi = {
+const realWorldsApi = {
   async getWorlds(params?: {
     isPublic?: boolean;
     tags?: string[];
@@ -31,3 +33,5 @@ export const worldsApi = {
     return data;
   },
 };
+
+export const worldsApi = useMocks ? mockWorldsApi : realWorldsApi;

@@ -1,7 +1,9 @@
 import api from './client';
+import { mockMarketplaceApi } from './mock';
+import { useMocks } from '../utils/env';
 import type { MarketplaceListing, PaginatedResponse } from '../types/game';
 
-export const marketplaceApi = {
+const realMarketplaceApi = {
   async getListings(params?: {
     category?: string;
     minPrice?: number;
@@ -40,3 +42,5 @@ export const marketplaceApi = {
     return data;
   },
 };
+
+export const marketplaceApi = useMocks ? mockMarketplaceApi : realMarketplaceApi;
