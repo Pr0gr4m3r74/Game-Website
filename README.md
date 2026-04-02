@@ -28,7 +28,8 @@ Game-Website/
 │   │   │   ├── pages/       # Seiten (Router)
 │   │   │   ├── three/       # 3D Avatar-System (Three.js)
 │   │   │   ├── i18n/        # Übersetzungen (DE/EN)
-│   │   │   ├── api/         # API-Client
+│   │   │   ├── api/         # API-Client + Mock-Fallback
+│   │   │   ├── utils/       # Utility-Funktionen (env.ts u.a.)
 │   │   │   └── hooks/       # Custom Hooks
 │   │   └── public/          # Statische Assets, PWA-Manifest
 │   │
@@ -43,6 +44,11 @@ Game-Website/
 │       │   ├── moderation/  # Moderation & Reporting
 │       │   └── prisma/      # Prisma-Service
 │       └── prisma/          # DB-Schema, Migrations, Seed
+│
+├── electron/                 # Electron Desktop-Client
+│   ├── main.ts              # Electron-Hauptprozess
+│   ├── preload.ts           # Preload-Script (contextBridge)
+│   └── tsconfig.json        # TypeScript-Konfiguration
 │
 ├── packages/
 │   └── common/              # Shared Types & Utilities
@@ -84,6 +90,44 @@ Game-Website/
 - **pnpm** - Monorepo-Paketmanager
 - **Docker & Docker Compose** - Containerisierung
 - **GitHub Actions** - CI/CD-Pipeline
+
+## 🖥️ Desktop-Version (Electron)
+
+Das Projekt enthält einen Electron-Desktop-Client, der als eigenständige App ohne Backend-Server funktioniert. Die gesamte API wird im Desktop-Modus durch eine lokale Mock-/Fallback-Schicht ersetzt, die Daten in `localStorage` persistiert.
+
+### Desktop-App im Entwicklungsmodus starten
+
+```bash
+pnpm install
+pnpm dev:desktop
+```
+
+Dies startet den Vite-Dev-Server und öffnet automatisch das Electron-Fenster.
+
+### Desktop-App produktionsreif bauen
+
+```bash
+pnpm build:desktop
+```
+
+Erzeugt das Frontend (`apps/frontend/dist/`) und die Electron-Hauptprozess-Dateien (`dist-electron/`).
+
+### Windows-Installer erzeugen
+
+```bash
+pnpm dist:desktop
+```
+
+Erstellt einen NSIS-Installer unter `release/`. Zielplattform: Windows.
+
+### Mock-Modus im Browser (ohne Backend)
+
+Sie können die Web-Version auch ohne Backend mit Mock-Daten testen:
+
+```bash
+cd apps/frontend
+VITE_USE_MOCKS=true pnpm dev
+```
 
 ## 🚀 Schnellstart
 
