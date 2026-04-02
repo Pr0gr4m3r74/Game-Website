@@ -1,28 +1,24 @@
 {
-  "name": "playverse-social-game-platform",
+  "name": "avatar3d-social-platform",
   "version": "0.1.0",
-  "description": "Cross-platform social game platform - Web, iOS, Android PWA",
+  "description": "3D Avatar Social Game Platform - Web, iOS, Android PWA",
   "private": true,
-  "workspaces": [
-    "packages/frontend",
-    "packages/backend",
-    "packages/shared"
-  ],
   "scripts": {
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "dev:frontend": "npm run dev --workspace=packages/frontend",
-    "dev:backend": "npm run dev --workspace=packages/backend",
-    "build": "npm run build --workspaces",
-    "build:frontend": "npm run build --workspace=packages/frontend",
-    "build:backend": "npm run build --workspace=packages/backend",
-    "lint": "npm run lint --workspaces",
+    "dev": "concurrently \"pnpm --filter backend dev\" \"pnpm --filter frontend dev\"",
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend dev",
+    "build": "pnpm -r build",
+    "build:frontend": "pnpm --filter frontend build",
+    "build:backend": "pnpm --filter backend build",
+    "lint": "pnpm -r lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
-    "test": "npm run test --workspaces",
+    "test": "pnpm -r test",
+    "test:e2e": "pnpm --filter backend test:e2e",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down",
-    "db:migrate": "npm run migrate --workspace=packages/backend",
-    "db:seed": "npm run seed --workspace=packages/backend"
+    "db:migrate": "pnpm --filter backend migrate",
+    "db:seed": "pnpm --filter backend seed"
   },
   "devDependencies": {
     "@types/node": "^20.10.0",
@@ -32,6 +28,7 @@
   },
   "engines": {
     "node": ">=18.0.0",
-    "npm": ">=9.0.0"
-  }
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
 }

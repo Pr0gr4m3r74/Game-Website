@@ -1,175 +1,189 @@
-# PlayVerse - Cross-Platform Social Game Platform 🎮
+# Avatar3D - 3D Avatar Social Game Platform 🎮
 
-A production-ready MVP for a cross-platform social game platform built with modern web technologies. Play on web, iOS, and Android via PWA/native wrappers.
+Eine produktionsreife MVP-Plattform für soziale Spiele mit Fokus auf 3D-Avatare. Spielbar im Web, auf iOS und Android via PWA/native Wrapper.
 
-> **🔒 Security Update**: Next.js has been updated to version 15.0.8+ to address CVE-2025 vulnerabilities related to HTTP request deserialization DoS. Always run `npm audit` and keep dependencies up to date.
+> **🔒 Sicherheitshinweis**: Alle Abhängigkeiten sind aktuell. Führen Sie regelmäßig `pnpm audit` aus, um die Sicherheit zu gewährleisten.
 
 ## 🚀 Features
 
-- **Cross-Platform**: Web-first PWA design, playable on desktop, iOS, and Android
-- **Real-Time Multiplayer**: WebSocket-based real-time game interactions
-- **Social Features**: Friend system, chat, achievements, and user profiles
-- **Responsive Design**: Beautiful UI with Tailwind CSS, optimized for all screen sizes
-- **Secure Authentication**: JWT-based auth with bcrypt password hashing
-- **Modern Stack**: TypeScript, Next.js, Express, PostgreSQL, Prisma ORM
-- **Developer Experience**: Monorepo structure, hot reload, Docker support
-- **CI/CD Ready**: GitHub Actions workflows for automated testing and deployment
+- **3D Avatar System**: Umfangreiches Avatar-System mit Low-Poly-Ästhetik, Three.js-basiert
+- **Creator Tools**: Upload von GLB/GLTF-Assets, Templates, Quick-Create-Wizard
+- **Marketplace**: Bits-Economy, Cosmetics kaufen/verkaufen/giften
+- **Mehrsprachig**: Vollständige i18n-Unterstützung (Deutsch/Englisch)
+- **Cross-Platform**: Web-first PWA, spielbar auf Desktop, iOS und Android
+- **World Editor**: Lightweight Scene-Editor mit Grid/Prefab-System
+- **Moderation**: Content-Reporting, Admin-Panel, Profanity-Filter
+- **GDPR-Ready**: Datenexport, Account-Löschung, Consent-Flows
+- **Moderner Stack**: React, NestJS, TypeScript, PostgreSQL, Prisma ORM
+- **CI/CD Ready**: GitHub Actions für automatisierte Tests und Deployment
 
-## 📁 Project Structure
+## 📁 Projektstruktur
 
 ```
 Game-Website/
-├── packages/
-│   ├── frontend/          # Next.js web application
+├── apps/
+│   ├── frontend/             # React + Vite Web-Anwendung
 │   │   ├── src/
-│   │   │   ├── app/      # Next.js 14 app router pages
-│   │   │   ├── components/  # React components
-│   │   │   ├── lib/      # API client, WebSocket, utilities
-│   │   │   └── styles/   # Global CSS and Tailwind
-│   │   ├── public/       # Static assets, PWA manifest
-│   │   └── Dockerfile    # Frontend production build
+│   │   │   ├── components/  # React-Komponenten
+│   │   │   ├── pages/       # Seiten (Router)
+│   │   │   ├── three/       # 3D Avatar-System (Three.js)
+│   │   │   ├── i18n/        # Übersetzungen (DE/EN)
+│   │   │   ├── api/         # API-Client
+│   │   │   └── hooks/       # Custom Hooks
+│   │   └── public/          # Statische Assets, PWA-Manifest
 │   │
-│   ├── backend/          # Express.js API server
-│   │   ├── src/
-│   │   │   ├── controllers/  # Request handlers
-│   │   │   ├── routes/       # API routes
-│   │   │   ├── middleware/   # Auth, error handling
-│   │   │   ├── config/       # Configuration
-│   │   │   └── index.ts      # Server entry point
-│   │   ├── prisma/       # Database schema and migrations
-│   │   └── Dockerfile    # Backend production build
-│   │
-│   └── shared/           # Shared types and utilities
-│       └── src/
-│           ├── types.ts   # Common TypeScript types
-│           └── utils.ts   # Shared utility functions
+│   └── backend/             # NestJS API-Server
+│       ├── src/
+│       │   ├── auth/        # Authentifizierung (JWT, OAuth)
+│       │   ├── users/       # Benutzerverwaltung
+│       │   ├── avatars/     # Avatar-System
+│       │   ├── cosmetics/   # Cosmetics-System
+│       │   ├── marketplace/ # Marketplace & Bits-Economy
+│       │   ├── worlds/      # World-Editor
+│       │   ├── moderation/  # Moderation & Reporting
+│       │   └── prisma/      # Prisma-Service
+│       └── prisma/          # DB-Schema, Migrations, Seed
 │
-├── .github/
-│   └── workflows/
-│       └── ci.yml        # CI/CD pipeline
-├── docker-compose.yml    # Docker orchestration
-└── package.json          # Root workspace configuration
+├── packages/
+│   └── common/              # Shared Types & Utilities
+│       └── src/
+│           ├── types.ts     # Gemeinsame TypeScript-Typen
+│           └── utils.ts     # Hilfs-Funktionen
+│
+├── .github/workflows/       # CI/CD-Pipeline
+├── docker-compose.yml       # Docker-Orchestrierung
+├── pnpm-workspace.yaml      # pnpm Workspace-Config
+└── package.json             # Root-Workspace-Konfiguration
 ```
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- **Next.js 14** - React framework with App Router
-- **TypeScript** - Type-safe development
-- **Tailwind CSS** - Utility-first styling
-- **Socket.io Client** - Real-time communication
-- **SWR** - Data fetching and caching
+- **React 18** - UI-Framework
+- **Vite 5** - Build-Tool & Dev-Server
+- **TypeScript** - Typsichere Entwicklung
+- **Tailwind CSS** - Utility-first Styling
+- **Three.js** - 3D-Rendering
+- **@react-three/fiber** - React-Renderer für Three.js
+- **react-i18next** - Internationalisierung (DE/EN)
 
 ### Backend
-- **Express.js** - Web server framework
-- **TypeScript** - Type-safe development
-- **Prisma** - Modern ORM for PostgreSQL
-- **Socket.io** - WebSocket server
-- **JWT** - Authentication tokens
-- **bcrypt** - Password hashing
+- **NestJS** - Progressives Node.js-Framework
+- **TypeScript** - Typsichere Entwicklung
+- **Prisma** - Modernes ORM für PostgreSQL
+- **JWT** - Authentifizierung (Access & Refresh Tokens)
+- **bcrypt** - Passwort-Hashing
+- **Passport** - OAuth (Google, Apple)
 
-### Database
-- **PostgreSQL** - Relational database
-- **Prisma Migrate** - Database migrations
+### Datenbank & Speicher
+- **PostgreSQL** - Relationale Datenbank
+- **Redis** - Sessions & Caching
+- **S3-kompatibel** - Asset-Speicher (AWS S3, MinIO, etc.)
 
 ### DevOps
-- **Docker** - Containerization
-- **Docker Compose** - Local development orchestration
-- **GitHub Actions** - CI/CD pipelines
+- **pnpm** - Monorepo-Paketmanager
+- **Docker & Docker Compose** - Containerisierung
+- **GitHub Actions** - CI/CD-Pipeline
 
-## 🚀 Quick Start
+## 🚀 Schnellstart
 
-### Prerequisites
+### Voraussetzungen
 
-- Node.js 18+ and npm 9+
-- Docker and Docker Compose (for containerized setup)
-- PostgreSQL 15+ (if running without Docker)
+- Node.js 18+ und pnpm 8+
+- Docker und Docker Compose (für Container-Setup)
+- PostgreSQL 15+ (falls ohne Docker)
 
-### Option 1: Docker (Recommended)
+### Option 1: Docker (Empfohlen)
 
-1. **Clone the repository**
+1. **Repository klonen**
    ```bash
    git clone https://github.com/Pr0gr4m3r74/Game-Website.git
    cd Game-Website
    ```
 
-2. **Set production secrets** (IMPORTANT for production)
+2. **Secrets setzen** (WICHTIG für Produktion)
    ```bash
-   # Set JWT secret via environment variable
-   export JWT_SECRET="your-secure-random-jwt-secret-here"
+   # JWT-Secrets via Umgebungsvariablen setzen
+   export JWT_SECRET="dein-sicherer-jwt-secret-mindestens-32-zeichen"
+   export JWT_REFRESH_SECRET="dein-sicherer-refresh-secret-mindestens-32-zeichen"
    ```
 
-3. **Start the services**
+3. **Services starten**
    ```bash
    docker-compose up -d
    ```
 
-4. **Access the application**
-   - Frontend: http://localhost:3000
+4. **Anwendung aufrufen**
+   - Frontend: http://localhost:5173
    - Backend API: http://localhost:3001
-   - API Health: http://localhost:3001/api/health
+   - API Docs: http://localhost:3001/api/docs
+   - Health Check: http://localhost:3001/health
 
-> **⚠️ Security Note**: The default docker-compose.yml is configured for development. For production, ensure you set a secure JWT_SECRET environment variable and use proper secrets management.
+> **⚠️ Sicherheitshinweis**: Die Standard-docker-compose.yml ist für Entwicklung konfiguriert. Für Produktion sichere JWT-Secrets setzen und Secrets-Management verwenden.
 
-### Option 2: Local Development
+### Option 2: Lokale Entwicklung
 
-1. **Clone the repository**
+1. **Repository klonen**
    ```bash
    git clone https://github.com/Pr0gr4m3r74/Game-Website.git
    cd Game-Website
    ```
 
-2. **Install dependencies**
+2. **Dependencies installieren**
    ```bash
-   npm install
+   pnpm install
    ```
 
-3. **Set up environment variables**
+3. **Umgebungsvariablen einrichten**
    ```bash
    # Backend
-   cp packages/backend/.env.example packages/backend/.env
+   cp apps/backend/.env.example apps/backend/.env
+   # .env bearbeiten und Secrets eintragen!
    
    # Frontend
-   cp packages/frontend/.env.example packages/frontend/.env
+   cp apps/frontend/.env.example apps/frontend/.env
    ```
 
-4. **Start PostgreSQL** (if not using Docker)
+4. **PostgreSQL starten** (falls nicht via Docker)
    ```bash
-   # Using Docker for just the database
+   # Nur Datenbank via Docker
    docker run -d \
-     --name playverse-db \
-     -e POSTGRES_USER=playverse \
-     -e POSTGRES_PASSWORD=playverse123 \
-     -e POSTGRES_DB=playverse \
+     --name avatar3d-db \
+     -e POSTGRES_USER=avatar3d \
+     -e POSTGRES_PASSWORD=avatar3d123 \
+     -e POSTGRES_DB=avatar3d_db \
      -p 5432:5432 \
      postgres:15-alpine
    ```
 
-5. **Run database migrations**
+5. **Datenbank-Migrationen ausführen**
    ```bash
-   cd packages/backend
-   npx prisma migrate dev
-   npx prisma db seed
-   cd ../..
+   pnpm db:migrate
+   pnpm db:seed
    ```
 
-6. **Start development servers**
+6. **Dev-Server starten**
    ```bash
-   # Start both frontend and backend
-   npm run dev
+   # Beide Server starten
+   pnpm dev
    
-   # Or start individually
-   npm run dev:backend  # Backend on :3001
-   npm run dev:frontend # Frontend on :3000
+   # Oder einzeln starten
+   pnpm dev:backend   # Backend auf :3001
+   pnpm dev:frontend  # Frontend auf :5173
    ```
 
-## 🎮 Demo Accounts
+## 🎮 Demo-Accounts
 
-Try the platform with these pre-seeded accounts:
+Probieren Sie die Plattform mit diesen vorinstallierten Test-Accounts:
 
-- **Email**: alice@playverse.com | **Password**: Demo1234
-- **Email**: bob@playverse.com | **Password**: Demo1234
-- **Email**: charlie@playverse.com | **Password**: Demo1234
+- **Admin**: admin@avatar3d.dev | **Passwort**: Demo1234
+- **Email**: max@test.de | **Passwort**: Demo1234
+- **Email**: anna@test.de | **Passwort**: Demo1234
+- **Email**: john@test.com | **Passwort**: Demo1234
+- **Email**: emma@test.com | **Passwort**: Demo1234
+- **Email**: sophie@test.de | **Passwort**: Demo1234
+
+Alle Test-User haben 100 Bits Startguthaben. Admin hat 10.000 Bits.
 
 ## 📚 API Documentation
 
@@ -232,155 +246,131 @@ POST /api/games/:id/join
 Authorization: Bearer <token>
 ```
 
-## 🔧 Database Schema
+## 📚 Datenbank-Schema
 
-### Core Models
+### Kern-Modelle
 
-- **User**: User accounts with authentication
-- **Game**: Game sessions/rooms
-- **GameParticipant**: Many-to-many relationship for users in games
-- **Friend**: Social connections between users
-- **Message**: Chat messages in game rooms
-- **Achievement**: Unlockable achievements
-- **UserAchievement**: User's unlocked achievements
+- **User**: Benutzerkonten mit Authentifizierung, Rollen, Locale (DE/EN)
+- **Avatar**: 3D-Avatare mit Customization-JSON, Equipment
+- **CosmeticItem**: Handelbare Cosmetics im Marketplace
+- **World**: Benutzererstellte 3D-Welten mit Scene-JSON
+- **BitsBalance**: Virtuelle Währung pro Benutzer
+- **Transaction**: Transaktionslog für Marketplace (atomar)
+- **Report**: Content-Reporting für Moderation
+- **AuditLog**: Audit-Trail für Admin-Aktionen
 
-See `packages/backend/prisma/schema.prisma` for the complete schema.
+Siehe `apps/backend/prisma/schema.prisma` für das vollständige Schema.
 
-## 🧪 Testing
-
-```bash
-# Run all tests
-npm test
-
-# Run tests for specific package
-npm test --workspace=packages/backend
-npm test --workspace=packages/frontend
-```
-
-## 🎨 Linting & Formatting
+## 🧪 Testen
 
 ```bash
-# Lint all packages
-npm run lint
+# Alle Tests ausführen
+pnpm test
 
-# Format code
-npm run format
+# Tests für spezifisches Paket
+pnpm --filter backend test
+pnpm --filter frontend test
 
-# Check formatting
-npm run format:check
+# E2E-Tests
+pnpm test:e2e
 ```
 
-## 🏗️ Building for Production
+## 🎨 Linting & Formatierung
 
-### Build all packages
 ```bash
-npm run build
+# Lint alle Pakete
+pnpm lint
+
+# Code formatieren
+pnpm format
+
+# Formatierung prüfen
+pnpm format:check
 ```
 
-### Build individual packages
+## 🏗️ Production Build
+
+### Alle Pakete bauen
 ```bash
-npm run build:frontend
-npm run build:backend
+pnpm build
 ```
 
-### Docker production build
+### Individuelle Pakete
+```bash
+pnpm build:frontend
+pnpm build:backend
+```
+
+### Docker Production Build
 ```bash
 docker-compose -f docker-compose.yml build
 docker-compose -f docker-compose.yml up -d
 ```
 
-## 🚢 Deployment
+## 📱 PWA-Installation
 
-### Prerequisites for Deployment
+Die Frontend-App ist eine Progressive Web App, die auf Mobilgeräten installiert werden kann:
 
-1. **Environment Variables**: Set production environment variables
-2. **Database**: PostgreSQL instance (e.g., AWS RDS, Digital Ocean, Supabase)
-3. **Container Registry**: For Docker images (e.g., Docker Hub, AWS ECR, GitHub Container Registry)
+1. App im mobilen Browser öffnen
+2. "Zum Startbildschirm hinzufügen" wählen
+3. App installieren
+4. Vom Startbildschirm wie eine native App starten
 
-### Deployment Options
+## 🤝 Mitwirken
 
-#### Option 1: Docker Container Platform
-- Deploy to AWS ECS, Google Cloud Run, Azure Container Apps, or DigitalOcean App Platform
-- Use the provided Dockerfiles and docker-compose.yml as reference
+Dies ist ein produktionsreifes MVP für Teamzusammenarbeit. So können Sie beitragen:
 
-#### Option 2: Platform-as-a-Service
-- **Frontend**: Deploy to Vercel, Netlify, or Cloudflare Pages
-- **Backend**: Deploy to Railway, Render, or Fly.io
-- **Database**: Use managed PostgreSQL from the same provider
+1. **Repository forken**
+2. **Feature-Branch erstellen**: `git checkout -b feature/tolles-feature`
+3. **Änderungen committen**: `git commit -m 'feat: Tolles Feature hinzugefügt'`
+4. **Branch pushen**: `git push origin feature/tolles-feature`
+5. **Pull Request öffnen**
 
-#### Option 3: Virtual Private Server
-- Deploy to any VPS (DigitalOcean, Linode, AWS EC2)
-- Use docker-compose for orchestration
-- Set up nginx as reverse proxy
+### Entwicklungsrichtlinien
 
-### Example: Vercel + Railway Deployment
+- Bestehenden Code-Stil befolgen (ESLint + Prettier konfiguriert)
+- Aussagekräftige Commit-Messages schreiben
+- Dokumentation für neue Features aktualisieren
+- Tests für neue Funktionalität hinzufügen
+- Sicherstellen, dass alle CI-Checks bestehen
 
-**Frontend (Vercel)**:
-1. Connect your GitHub repository to Vercel
-2. Set root directory to `packages/frontend`
-3. Add environment variables for API URLs
-4. Deploy
+## 🔒 Sicherheit & GDPR
 
-**Backend (Railway)**:
-1. Create new project on Railway
-2. Add PostgreSQL database service
-3. Connect GitHub repository
-4. Set root directory to `packages/backend`
-5. Add environment variables
-6. Deploy
+Sicherheit und Datenschutz haben höchste Priorität:
 
-## 📱 PWA Installation
+- **GDPR-Compliance**: Datenexport/Löschung, Consent-Flows
+- **Content-Moderation**: Profanity-Filter, Reporting, Admin-Review
+- **Security**: Input-Sanitization, Rate-Limiting, File-Validation
+- **Audit-Trail**: Logging für Transaktionen und Moderations-Aktionen
+- Review [SECURITY.md](./SECURITY.md) für Details
+- Führen Sie regelmäßig `pnpm audit` aus
+- Melden Sie Sicherheitsprobleme privat über GitHub
 
-The frontend is a Progressive Web App that can be installed on mobile devices:
+## 🎯 Nächste Schritte (TODOs)
 
-1. Open the app in a mobile browser
-2. Look for "Add to Home Screen" prompt
-3. Install the app
-4. Launch from your home screen like a native app
+Geplante Erweiterungen (siehe GitHub Issues):
 
-## 🤝 Contributing
+1. **GDPR-Hardening**: E-Mail-Verifizierung, erweiterte Consent-Flows
+2. **Content-Moderation Scaling**: KI-basierte Content-Prüfung
+3. **Analytics & Telemetry**: Nutzungsstatistiken, Performance-Monitoring
+4. **Mobile Wrappers**: Capacitor/React Native für native Apps (iOS/Android)
+5. **Advanced 3D Features**: Skeletal Animation, IK, Physics
+6. **Social Features**: Friends, Chat, Multiplayer
 
-This is a production-ready MVP designed for team collaboration. Here's how to contribute:
+## 🙏 Danksagungen
 
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Commit your changes**: `git commit -m 'Add amazing feature'`
-4. **Push to the branch**: `git push origin feature/amazing-feature`
-5. **Open a Pull Request**
-
-### Development Guidelines
-
-- Follow the existing code style (ESLint + Prettier configured)
-- Write meaningful commit messages
-- Update documentation for new features
-- Add tests for new functionality
-- Ensure all CI checks pass before requesting review
-
-## 📝 License
-
-This project is available for educational and commercial use.
-
-## 🔒 Security
-
-Security is a top priority. For security advisories and best practices:
-- Review [SECURITY.md](./SECURITY.md) for vulnerability information
-- Run `npm audit` regularly to check for vulnerabilities
-- Keep dependencies updated
-- Report security issues privately through GitHub
-
-## 🙏 Acknowledgments
-
-- Built with modern web technologies and best practices
-- Inspired by social and sandbox gaming platforms
-- Designed for scalability and team collaboration
+- Gebaut mit modernen Web-Technologien und Best Practices
+- Inspiriert von Sandbox- und Social-Gaming-Plattformen
+- Designed für Skalierbarkeit und Teamzusammenarbeit
 
 ## 📞 Support
 
-For questions or issues:
-- Open an issue on GitHub
-- Check the documentation in `/docs`
-- Review the API examples in `/examples`
+Bei Fragen oder Problemen:
+
+- Issue auf GitHub öffnen
+- Dokumentation in `/apps/backend` und `/apps/frontend` prüfen
+- API-Dokumentation unter http://localhost:3001/api/docs
 
 ---
 
-**Built with ❤️ as a production-ready MVP for cross-platform social gaming**
+**Gebaut mit ❤️ als produktionsreifes MVP für cross-platform social gaming mit Fokus auf 3D-Avatare**
